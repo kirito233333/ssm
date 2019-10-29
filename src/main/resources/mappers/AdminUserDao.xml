@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.demo.dao.AdminUserDao">
+    <resultMap type="com.ssm.demo.entity.AdminUser" id="AdminUserResult">
+        <result property="id" column="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="password" column="password_md5"/>
+        <result property="userToken" column="user_token"/>
+        <result property="isDeleted" column="is_deleted"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="getAdminUserByUserNameAndPassword" resultMap="AdminUserResult">
+		select id,user_name,user_token
+		from tb_admin_user
+        where user_name = #{userName} and password_md5 = #{passwordMD5}
+        and is_deleted = 0
+		ORDER BY  id DESC limit 1
+	</select>
+
+    <select id="getAdminUserByToken" resultMap="AdminUserResult">
+		select id,user_name,user_token
+		from tb_admin_user
+        where user_token = #{userToken}
+        and is_deleted = 0
+		ORDER BY  id DESC limit 1
+	</select>
+
+    <update id="updateUserToken">
+        update tb_admin_user set user_token = #{newToken} where id =#{userId} and is_deleted = 0
+    </update>
+</mapper>
