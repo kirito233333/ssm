@@ -105,6 +105,12 @@ function login() {
     });
 }
 
+function register() {
+    $('.alert-danger').css("display", "none");
+    setCookie("token", result.data.userToken);
+    alert("注册ing");
+}
+
 <!-- cookie操作 start-->
 
 /**
