@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SSM | Log in</title>
+    <title>zhujian | Log in</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -14,25 +14,28 @@
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" >
 <div class="login-box">
     <div class="login-logo">
-        <b>SSM</b>
+        <b>住建执法</b>
+        <b>管理系统</b>
     </div>
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">达人课 SSM搭建精美且实用的后台管理系统</p>
+            <h4 class="login-box-msg">Welcome come!</h4>
             <form action="#" onsubmit="return false;" method="post">
                 <div class="form-group">
                     <div class="alert alert-danger" style="display: none;">错误信息展示栏。</div>
                 </div>
                 <div class="form-group has-feedback">
                     <span class="fa fa-user form-control-feedback"></span>
+                    <label for="userName">账 号</label>
                     <input type="text" id="userName" class="form-control" placeholder="默认账号：admin">
                 </div>
                 <div class="form-group has-feedback">
                     <span class="fa fa-lock form-control-feedback"></span>
+                    <label for="password">密 码</label>
                     <input type="password" id="password" class="form-control" placeholder="默认密码：123456">
                 </div>
                 <div class="row">
@@ -40,22 +43,25 @@
                         <div class="checkbox icheck">
                             <label>
                                 <input type="checkbox"> 记住我
+
                             </label>
                         </div>
                     </div>
-                    <!-- /.col -->
                     <div class="col-4">
-                        <button type="submit" onclick="login()" class="btn btn-primary btn-block btn-flat">登录
-                        </button>
                     </div>
                     <!-- /.col -->
-                    <!-- /.col -->
-                    <div class="col-4">
-                        <button type="submit" onclick="register()" class="btn btn-primary btn-block btn-flat">注册
+                    <div class="col-4" >
+                        <button type="submit" onclick="toRegister()"  class="btn btn-primary btn-block">注册
                         </button>
                     </div>
-                    <!-- /.col -->
+                    <div class="col-4">
+                    </div>
 
+                    <div class="col-4">
+                        <button type="submit" onclick="login()" class="btn btn-primary btn-block">登录
+                        </button>
+                    </div>
+                    <!-- /.col -->
                 </div>
             </form>
 

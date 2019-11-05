@@ -29,17 +29,27 @@ function validLength(obj, length) {
 /**
  * 用户名称验证 4到16位（字母，数字，下划线，减号）
  *
- * @param userName
+ *@param userName
  * @returns {boolean}
  */
+function validPhone(phone) {
+    var pattern = /^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$/;
+    if (pattern.test(phone.trim())) {
+        return (true);
+    } else {
+        return (false);
+    }
+}
+
 function validUserName(userName) {
-    var pattern = /^[a-zA-Z0-9_-]{4,16}$/;
+    var pattern = /^[a-zA-Z0-9_-]{1,20}$/;
     if (pattern.test(userName.trim())) {
         return (true);
     } else {
         return (false);
     }
 }
+
 
 /**
  * 用户密码验证 最少6位，最多20位字母或数字的组合
@@ -56,6 +66,13 @@ function validPassword(password) {
     }
 }
 
+function repeatPassword(password,password_again) {
+    if (password == password_again){
+        return (true);
+    } else {
+        return (false);
+    }
+}
 <!-- 正则验证 end-->
 
 function login() {
@@ -89,7 +106,7 @@ function login() {
                 $('.alert-danger').css("display", "none");
                 setCookie("token", result.data.userToken);
                 alert("登录成功");
-                window.location.href = "/";
+                window.location.href = "/ssm_demo_war/index.html"; //跳转
             }
             ;
             if (result.resultCode == 500) {
@@ -100,15 +117,49 @@ function login() {
         error: function () {
             $('.alert-danger').css("display", "none");
             showErrorInfo("接口异常，请联系管理员！");
+
             return;
         }
     });
 }
 
-function register() {
+function toRegister() {
+    window.location.href = "/ssm_demo_war/register.html"; //跳转
+}
+
+function register(){
+    var phone = $("#phone").val();
+    var password = $("#password").val();
+    var password_again =$ ("#password_again").val();
+    if (isNull(phone)) {
+        showErrorInfo("请输入电话号码!");
+        return;
+    }
+    if (!validPhone(phone)) {
+        showErrorInfo("请输入正确的电话号码!");
+        return;
+    }
+    if (isNull(password)) {
+        showErrorInfo("请输入密码!");
+        return;
+    }
+    if (!validPassword(password)) {
+        showErrorInfo("请输入正确的密码!");
+        return;
+    }
+    if(!repeatPassword(password,password_again)){
+        showErrorInfo("两次密码输入不一致");
+        return;
+    }
+    var data = {"phone": phone, "password": password}
+    if(!phone == "13278880740"||! password == "123456"){
+        alert("注册失败");
+        return;
+    }
+    console.log("I AM finish");
     $('.alert-danger').css("display", "none");
-    setCookie("token", result.data.userToken);
-    alert("注册ing");
+    alert("注册成功");
+    window.location.href = "/ssm_demo_war/login.html"; //跳转
 }
 
 <!-- cookie操作 start-->

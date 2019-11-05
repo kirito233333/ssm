@@ -40,4 +40,10 @@ public class AdminUserControler {
         }
         return result;
     }
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public Result register(@RequestBody AdminUser user) {
+        Result result = ResultGenerator.genFailResult("注册失败");
+        System.out.println(user.getUserName() + user.getPassword());
+        return result;
+    }
 }
